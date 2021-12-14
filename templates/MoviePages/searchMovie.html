@@ -1,0 +1,40 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<section class="about_section layout_padding" style="text-align:center;height:500px;padding-top:200px">
+    <div class="container">
+      <div class="text-center">
+        <h2 class="section-heading text-uppercase">Search Movie</h2>
+      </div>
+      <br />
+    <form name="form" method="post" action="{% url 'showSearchedMovie' %}">
+        {% csrf_token %}
+        <label for="movie_name">Movie Name:</label>
+        <input
+          type="text"
+          name="movie_name"
+          id="movie_name"
+        />
+        <br /><br />
+  
+  
+        <div class="btn-box">
+          <button style="margin-top: 15px;
+          border: none;
+          text-transform: uppercase;
+          display: inline-block;
+          padding: 10px 55px;
+          background-color: #ffbe33;
+          color: #ffffff;
+          border-radius: 45px;
+          -webkit-transition: all 0.3s;
+          transition: all 0.3s;
+          border: none;" type="submit" class="btn1">Search Movie</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+    </div>
+  </div>
+</section>
+
+{% endblock %}

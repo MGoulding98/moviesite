@@ -1,0 +1,78 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+<section class="about_section layout_padding text-center">
+  <div class="container">
+    <div class="text-left">
+      <h2 class="section-heading text-uppercase text-center">Update Movie</h2>
+    </div>
+    <br />
+    <form name="form" method="post" action="{% url 'updateMovie' movie=record.movie_name %}">
+      {% csrf_token %}
+      
+      <label for="movie_name">Movie Name:</label>
+      <input
+        type="text"
+        name="movie_name"
+        id="movie_name"
+        value="{{record.movie_name}}"
+        required
+      />
+      <br /><br />
+
+      <label for="release_date">Release Date:</label>
+      <input
+        type="date"
+        name="release_date"
+        id="release_date"
+        value="{{record.release_date}}"
+        required
+      />
+      <br /><br />
+
+      <label for="runtime">Runtime (in minutes):</label>
+      <input
+        type="number"
+        name="runtime"
+        id="runtime"
+        value="{{record.runtime}}"
+        required
+      />
+      <br /><br />
+
+      <label for="dbmb_rating">DBMB Rating (out of ten):</label>
+      <input
+        type="float"
+        name="dbmb_rating"
+        id="dbmb_rating"
+        value="{{record.dbmb_rating}}"
+        required
+      />
+      <br /><br />
+
+      <label>List of Genres:</label>
+      <select name="genre" id="genre" required>
+        <option disabled selected value> -- select an option -- </option> 
+          {% for genre in genres %}
+            <option>{{ genre.genre_name }}</option>
+          {% endfor %}
+      </select>
+      <br><br><br>
+      <div>
+        <button style="margin-top: 15px;
+        border: none;
+        text-transform: uppercase;
+        display: inline-block;
+        padding: 10px 55px;
+        background-color: #ffbe33;
+        color: #ffffff;
+        border-radius: 45px;
+        -webkit-transition: all 0.3s;
+        transition: all 0.3s;
+        border: none;
+        margin-right:20px" type="submit">Update</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+{% endblock %}

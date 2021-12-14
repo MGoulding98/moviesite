@@ -1,0 +1,74 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<section class="about_section layout_padding text-center">
+  <div class="d-flex justify-content-center">
+    <div
+      class="text-center, text-white-50"
+      style="font-size: 30px; text-align: center"
+    >
+      {% for movie in record %}
+      <p>
+        <b class="justify-content-center text-white-50" style="font-size: 45px;color:white"
+          >Movie</b
+        >
+        <br /><br />
+        <b>Movie Name</b>: {{ movie.movie_name }}
+        <br />
+        <b>Release Date</b>: {{ movie.release_date }}
+        <br />
+        <b>Runtime</b>: {{ movie.runtime }} minutes
+        <br />
+        <b>DBMB Rating (out of ten)</b>: {{ movie.dbmb_rating }} 
+        <br />
+        <b>Genre</b>: {{ movie.genre }} <br /><br />
+      </p>
+      
+      <br /><br />
+    </div>
+  </div>
+    <div style="margin-top: 15px;
+    border: none;
+    text-transform: uppercase;
+    display: inline-block;
+    padding: 10px 55px;
+    background-color: #ffbe33;
+    color: #ffffff;
+    border-radius: 45px;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    border: none;
+    margin-right:20px"
+    >
+      <a class="btn1" href="{% url 'displayMovies' %}">
+        Back 
+      </a>
+  </div>
+  <div style="margin-top: 15px;
+  border: none;
+  text-transform: uppercase;
+  display: inline-block;
+  padding: 10px 55px;
+  background-color: #ffbe33;
+  color: #ffffff;
+  border-radius: 45px;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  border: none;">
+    <a class="btn1" href="{% url 'updateMovie' movie=movie.movie_name %}">
+      Update 
+    </a>
+  </div>
+{% empty %}
+<section class="about_section layout_padding text-center" style="height:500px">
+<div class="d-flex justify-content-center">
+  <div
+    class="text-center, text-white-50"
+    style="font-size: 30px; text-align: center"
+  >
+  No results found. <br>Please try again or add a new movie.
+  </div>
+</div>
+</section>
+{% endfor %}
+</section>
+
+{% endblock %}

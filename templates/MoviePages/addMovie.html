@@ -1,0 +1,71 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<section class="about_section layout_padding" style="text-align:center;">
+  <div class="container">
+    <div class="text-center">
+      <h2 class="section-heading text-uppercase">Add Movie</h2>
+    </div>
+    <br />
+    <form name="form" method="post" action="{% url 'addMovie' %}">
+      {% csrf_token %}
+      <label for="movie_name">Movie Name:</label>
+      <input
+        type="text"
+        name="movie_name"
+        id="movie_name"
+        required
+      />
+      <br /><br />
+
+      <label for="release_date">Release Date:</label>
+      <input
+        type="date"
+        name="release_date"
+        id="release_date"
+        required
+      />
+      <br /><br />
+
+      <label for="runtime">Runtime (in minutes):</label>
+      <input
+        type="number"
+        name="runtime"
+        id="runtime"
+        required
+      />
+      <br /><br />
+
+      <label for="dbmb_rating">DBMB Rating (out of ten):</label>
+      <input
+        type="float"
+        name="dbmb_rating"
+        id="dbmb_rating"
+        required
+      />
+      <br /><br />
+
+      <label>List of Genres:</label>
+      <select name="genre" id="genre" required>
+        <option disabled selected value> -- select an option -- </option> 
+          {% for genre in genres %}
+            <option>{{ genre.genre_name }}</option>
+          {% endfor %}
+      </select>
+      <br><br>
+
+      <div>
+        <button style="margin-top: 15px;
+        border: none;
+        text-transform: uppercase;
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #ffbe33;
+        color: #ffffff;
+        border-radius: 45px;
+        -webkit-transition: all 0.3s;
+        transition: all 0.3s;
+        border: none;" type="submit" class="btn1">Add Movie</button>
+      </div>
+    </form>
+  </div>
+</section>
+{% endblock %}
